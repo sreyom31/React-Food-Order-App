@@ -48,6 +48,12 @@ const Checkout = (props) => {
     }
 
     // Submit Card Data
+    props.onConfirm({
+      name: enteredName,
+      street: enteredStreet,
+      city: enteredCity,
+      postalCode: enteredPostalCode
+    });
 
   };
 
