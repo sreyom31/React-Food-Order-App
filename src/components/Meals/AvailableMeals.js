@@ -4,7 +4,8 @@ import MealItem from './MealItem/MealItem';
 import classes from './AvailableMeals.module.css';
 
 const AvailableMeals = () => {
-  const [meals, setMeals] = useState([])
+  const [meals, setMeals] = useState([]);
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     const fetchMeals = async () => {
@@ -26,7 +27,15 @@ const AvailableMeals = () => {
     }
 
     fetchMeals();
+    setIsLoading(false);
   },[]);
+
+  if(isLoading) {
+    return (
+    <section className={classes.mealsLoading}>
+      <p>Loading...</p>
+    </section>);
+  }
 
   const mealsList = meals.map((meal) => (
     <MealItem
